@@ -19,7 +19,7 @@ title: ""
 }
 
 .page-image {
-  flex: 0 0 35%;     /* 图片不会太大 */
+  flex: 0 0 35%;
 }
 
 .page-image img {
@@ -50,11 +50,6 @@ title: ""
     <p>I co-founded <a href="https://pitchbook.com/profiles/company/490702-69#overview" target="_blank">DigiCodon</a>,
       where I served as CTO, building
       <a href="https://en.wikipedia.org/wiki/DNA_digital_data_storage" target="_blank">DNA digital data storage</a> technologies.</p>
-
-    <p>
-      <a href="https://scholar.google.com/citations?user=HhNfxUAAAAAJ&hl=en">Google Scholar</a> ·
-      <a href="mailto:shuo.jiang@cityu.edu.hk">Email</a>
-    </p>
   </div>
 
   <div class="page-image">
