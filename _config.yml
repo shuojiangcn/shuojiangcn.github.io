@@ -1,0 +1,9 @@
+title: ""
+theme: minima
+
+header_pages:
+  - cv.md
+  - research.md
+  - blog.md
+
+future: true
