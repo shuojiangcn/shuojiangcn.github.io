@@ -8,25 +8,14 @@ title: ""
   <!-- Left column -->
   <div style="max-width: 60%; font-size: 18px; line-height: 1.65;">
 
-  <p><strong>Hi, I'm Shuo Jiang.</strong> I work at the intersection of <strong>AI</strong>, <strong>engineering design</strong>, and <strong>deep-tech innovation</strong>. My research looks at how AI can support human creativity and improve design and decision-making in complex engineering problems.</p>
+  <p><strong>I'm Shuo Jiang</strong>, a researcher and entrepreneur working at the intersection of <strong>AI, engineering design, and multidisciplinary innovation</strong>. I am currently a <strong>Postdoctoral Research Fellow at City University of Hong Kong</strong> with <a href="https://www.cityu.edu.hk/stfprofile/jianxiluo.htm" target="_blank">Prof. Jianxi Luo</a>, where I pursue <a href="https://arxiv.org/pdf/2506.09755" target="_blank">Intelligent Design 4.0</a>, exploring how foundation AI models can support end-to-end engineering design creation.</p>
 
-  <p>I completed my PhD at <strong>Shanghai Jiao Tong University</strong>, spent time at <strong>MIT</strong> as a visiting researcher, and previously worked as a Research Fellow at <strong>SUTD</strong>. I am currently a Postdoctoral Fellow at <strong>City University of Hong Kong</strong>.</p>
-
-  <p>Outside academia, I co-founded <strong>DigiCodon</strong>, a DNA data storage startup in Hangzhou, where I led technical development as CTO and helped the company raise multiple rounds of venture funding.</p>
+  <p>I co-founded <a href="https://pitchbook.com/profiles/company/490702-69#overview" target="_blank">DigiCodon</a>, where I served as CTO, building DNA-based information storage technologies.</p>
 
   <p>
-    <a href="#">Google Scholar</a> ·
-    <a href="#">LinkedIn</a> ·
-    <a href="mailto:your_email@xxx.com">Email</a>
+    <a href="https://scholar.google.com/citations?hl=en&user=HhNfxUAAAAAJ">Google Scholar</a> ·
+    <a href="shuo.jiang@cityu.edu.hk">Email</a>
   </p>
-
-  <h3 style="margin-top: 32px;">What I'm working on</h3>
-  <ul>
-    <li>AI for engineering design and generative creativity</li>
-    <li>Design-by-analogy and engineering knowledge modeling</li>
-    <li>Multi-agent reasoning for design tasks</li>
-    <li>Deep-tech applications and research-to-product translation</li>
-  </ul>
 
   </div>
 
