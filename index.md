@@ -6,7 +6,7 @@ title: ""
 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-top: 40px;">
 
   <!-- Left column -->
-  <div style="max-width: 60%; font-size: 18px; line-height: 1.65;">
+  <div style="max-width: 60%; font-size: 16px; line-height: 1.65;">
 
   <p>I'm Shuo Jiang, a researcher and entrepreneur working at the intersection of AI, engineering design, and multidisciplinary innovation.</p>
 
@@ -20,7 +20,7 @@ title: ""
 
   <p>
     <a href="https://scholar.google.com/citations?hl=en&user=HhNfxUAAAAAJ">Google Scholar</a> ·
-    <a href="shuo.jiang@cityu.edu.hk">Email</a>
+    <a href="mailto:shuo.jiang@cityu.edu.hk">Email</a>
   </p>
 
   </div>
