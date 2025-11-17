@@ -1,44 +1,38 @@
-<header class="site-header" style="
-  padding: 18px 0;
-  border-bottom: 1px solid #e5e5e5;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-">
+<header class="site-header" style="border-bottom: 1px solid #eee;">
   <div class="wrapper" style="
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  ">
-
-    <!-- Left: Site Title -->
-    <a href="/" style="
-      font-size: 22px;
-      font-weight: 600;
-      color: black;
-      text-decoration: none;
-      letter-spacing: 0.2px;
-    ">
-      Shuo Jiang
-    </a>
-
-    <!-- Right: Navigation -->
-    <nav style="
       display: flex;
-      gap: 28px;
-      font-size: 17px;
-      font-weight: 500;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    ">
+
+    {%- if page.url == "/" or page.url == "/index.html" -%}
+      <span class="site-title" style="
+          font-size: 22px;
+          font-weight: 600;
+      ">Shuo Jiang</span>
+    {%- else -%}
+      <a class="site-title" rel="author" href="{{ '/' | relative_url }}" style="
+          font-size: 22px;
+          font-weight: 600;
+          color: black;
+          text-decoration: none;
+      ">Shuo Jiang</a>
+    {%- endif -%}
+
+    <!-- Custom navigation (manual, not from header_pages) -->
+    <nav class="site-nav" style="
+        display: flex;
+        gap: 30px;
+        font-size: 16px;
+        font-weight: 500;
     ">
       <a href="https://scholar.google.com/citations?user=HhNfxUAAAAAJ&hl=en"
          target="_blank"
          style="color: black; text-decoration: none;">
-         Research
+        Research
       </a>
-
-      <a href="mailto:shuo.jiang@cityu.edu.hk"
-         style="color: black; text-decoration: none;">
-         Email
-      </a>
+      
     </nav>
 
   </div>
