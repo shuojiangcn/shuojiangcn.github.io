@@ -1,45 +1,46 @@
 <header class="site-header" style="
-    width: 100%;
     border-bottom: 1px solid #eee;
-    padding: 18px 40px;   /* 控制左右边距，让它和主页内容对齐 */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 ">
-
-  <!-- Left Logo -->
-  {%- if page.url == "/" or page.url == "/index.html" -%}
-    <span style="
-        font-size: 22px;
-        font-weight: 600;
-        color: black;
-    ">Shuo Jiang</span>
-  {%- else -%}
-    <a href="{{ '/' | relative_url }}" style="
-        font-size: 22px;
-        font-weight: 600;
-        color: black;
-        text-decoration: none;
-    ">Shuo Jiang</a>
-  {%- endif -%}
-
-  <!-- Right Navigation -->
-  <nav style="
+  <div class="wrapper" style="
+      max-width: 900px;     /* 加这一行，和正文统一 */
+      margin: 0 auto;       /* 居中 */
       display: flex;
-      gap: 30px;
-      font-size: 16px;
-      font-weight: 500;
-  ">
-    <a href="https://scholar.google.com/citations?user=HhNfxUAAAAAJ&hl=en"
-       target="_blank"
-       style="color: black; text-decoration: none;">
-      Research
-    </a>
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    ">
 
-    <a href="mailto:shuo.jiang@cityu.edu.hk"
-       style="color: black; text-decoration: none;">
-      Email
-    </a>
-  </nav>
+    {%- if page.url == "/" or page.url == "/index.html" -%}
+      <span class="site-title" style="
+          font-size: 22px;
+          font-weight: 600;
+      ">Shuo Jiang</span>
+    {%- else -%}
+      <a class="site-title" rel="author" href="{{ '/' | relative_url }}" style="
+          font-size: 22px;
+          font-weight: 600;
+          color: black;
+          text-decoration: none;
+      ">Shuo Jiang</a>
+    {%- endif -%}
 
+    <nav class="site-nav" style="
+        display: flex;
+        gap: 30px;
+        font-size: 16px;
+        font-weight: 500;
+    ">
+      <a href="https://scholar.google.com/citations?user=HhNfxUAAAAAJ&hl=en"
+         target="_blank"
+         style="color: black; text-decoration: none;">
+        Research
+      </a>
+
+      <a href="mailto:shuo.jiang@cityu.edu.hk"
+         style="color: black; text-decoration: none;">
+        Email
+      </a>
+    </nav>
+
+  </div>
 </header>
