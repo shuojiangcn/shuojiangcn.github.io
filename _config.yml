@@ -1,7 +1,6 @@
-title: ""
+title: "Shuo Jiang"
+logo: ""
 theme: minima
 
 header_pages:
-  - research.md
-
-future: true
+  - research.html
