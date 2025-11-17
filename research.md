@@ -5,94 +5,88 @@ permalink: /research/
 ---
 
 For a full publication list, please visit my  
-**Google Scholar**: https://scholar.google.com/citations?user=HhNfxUAAAAAJ&hl=en
+Google Scholar: https://scholar.google.com/citations?user=HhNfxUAAAAAJ&hl=en
 
 ---
 
 ## Research Papers
 
-<div style="line-height:1.55; font-size: 17px;">
+1. **Large Language Models for Design Structure Matrix Optimization.**  
+   Shuo Jiang, Min Xie, Jianxi Luo.  
+   Research in Engineering Design, 2025. (Under revision)
 
-**1. Large Language Models for Design Structure Matrix Optimization.**  
-Shuo Jiang, Min Xie, Jianxi Luo.  
-*Research in Engineering Design*, 2025. (Under revision)
+2. **Intelligent Design 4.0: Paradigm Evolution Toward the Agentic AI Era.**  
+   Shuo Jiang, Min Xie, Frank Y. Chen, Jian Ma, Jianxi Luo.  
+   ASME Journal of Computing and Information Science in Engineering, 2025.
 
-**2. Intelligent Design 4.0: Paradigm Evolution Toward the Agentic AI Era.**  
-Shuo Jiang, Min Xie, Frank Y. Chen, Jian Ma, Jianxi Luo.  
-*ASME Journal of Computing and Information Science in Engineering*, 2025.
+3. **AutoTRIZ: Automating Engineering Innovation with TRIZ and Large Language Models.**  
+   Shuo Jiang, Weifeng Li, Yuping Qian, Yangjun Zhang, Jianxi Luo.  
+   Advanced Engineering Informatics, 2025.
 
-**3. AutoTRIZ: Automating Engineering Innovation with TRIZ and Large Language Models.**  
-Shuo Jiang, Weifeng Li, Yuping Qian, Yangjun Zhang, Jianxi Luo.  
-*Advanced Engineering Informatics*, 2025.
+4. **Large Language Models for Combinatorial Optimization of Design Structure Matrix.**  
+   Shuo Jiang, Min Xie, Jianxi Luo.  
+   International Conference on Engineering Design (ICED25), Dallas, Texas, 2025.  
+   (Reviewers’ Choice Award, Top 10% Paper)
 
-**4. Large Language Models for Combinatorial Optimization of Design Structure Matrix.**  
-Shuo Jiang, Min Xie, Jianxi Luo.  
-*International Conference on Engineering Design (ICED25)*, Dallas, Texas, August 2025.  
-(Reviewers’ Choice Award, Top 10% Paper)
+5. **Deep Learning for Technical Document Classification.**  
+   Shuo Jiang, Jie Hu, Christopher L. Magee, Jianxi Luo.  
+   IEEE Transactions on Engineering Management, 2024.
 
-**5. Deep Learning for Technical Document Classification.**  
-Shuo Jiang, Jie Hu, Christopher L. Magee, Jianxi Luo.  
-*IEEE Transactions on Engineering Management*, 2024.
+6. **Mapping Novice Designer Behavior to Design Fixation in the Early-Stage Design Process.**  
+   Miao Jia, Shuo Jiang, Jie Hu, Jin Qi.  
+   ASME Journal of Mechanical Design, 2024.
 
-**6. Mapping Novice Designer Behavior to Design Fixation in the Early-Stage Design Process.**  
-Miao Jia, Shuo Jiang, Jie Hu, Jin Qi.  
-*ASME Journal of Mechanical Design*, 2024.
+7. **AutoTRIZ: Artificial Ideation with TRIZ and Large Language Models.**  
+   Shuo Jiang, Jianxi Luo.  
+   ASME IDETC-CIE, Design Automation Conference, 2024.
 
-**7. AutoTRIZ: Artificial Ideation with TRIZ and Large Language Models.**  
-Shuo Jiang, Jianxi Luo.  
-*ASME IDETC-CIE, Design Automation Conference*, 2024.
+8. **Toward Understanding Sources and Influences of Design Fixation.**  
+   Miao Jia, Shuo Jiang, Jie Hu, Jin Qi.  
+   ASME Journal of Mechanical Design, 2023.
 
-**8. Toward Understanding Sources and Influences of Design Fixation.**  
-Miao Jia, Shuo Jiang, Jie Hu, Jin Qi.  
-*ASME Journal of Mechanical Design*, 2023.
+9. **Technology Fitness Landscape for Design Innovation.**  
+   Shuo Jiang, Jianxi Luo.  
+   Journal of Engineering Design, 2022.
 
-**9. Technology Fitness Landscape for Design Innovation.**  
-Shuo Jiang, Jianxi Luo.  
-*Journal of Engineering Design*, 2022.
+10. **Patent Data for Engineering Design: A Critical Review and Future Directions.**  
+    Shuo Jiang, Serhad Sarica, Binyang Song, Jie Hu, Jianxi Luo.  
+    ASME Journal of Computing and Information Science in Engineering, 2022.
 
-**10. Patent Data for Engineering Design: A Critical Review and Future Directions.**  
-Shuo Jiang, Serhad Sarica, Binyang Song, Jie Hu, Jianxi Luo.  
-*ASME Journal of Computing and Information Science in Engineering*, 2022.
+11. **Data-Driven Design-By-Analogy: State-of-the-Art and Future Directions.**  
+    Shuo Jiang, Jie Hu, Kristin Wood, Jianxi Luo.  
+    ASME Journal of Mechanical Design, 2022.
 
-**11. Data-Driven Design-By-Analogy: State-of-the-Art and Future Directions.**  
-Shuo Jiang, Jie Hu, Kristin Wood, Jianxi Luo.  
-*ASME Journal of Mechanical Design*, 2022.
+12. **Patent Data for Engineering Design: A Review.**  
+    Shuo Jiang, Serhad Sarica, Binyang Song, Jie Hu, Jianxi Luo.  
+    International DESIGN Conference, 2022.
 
-**12. Patent Data for Engineering Design: A Review.**  
-Shuo Jiang, Serhad Sarica, Binyang Song, Jie Hu, Jianxi Luo.  
-*International DESIGN Conference*, 2022.
+13. **Data-Driven Design-by-Analogy: State of the Art.**  
+    Shuo Jiang, Jie Hu, Kristin L. Wood, Jianxi Luo.  
+    ASME IDETC, 2021.
 
-**13. Data-Driven Design-by-Analogy: State of the Art.**  
-Shuo Jiang, Jie Hu, Kristin L. Wood, Jianxi Luo.  
-*ASME IDETC*, 2021.
+14. **Deriving Design Feature Vectors for Patent Images with CNN.**  
+    Shuo Jiang, Jianxi Luo, Guillermo Ruiz-Pava, Jie Hu, Christopher Magee.  
+    ASME Journal of Mechanical Design, 2021.
 
-**14. Deriving Design Feature Vectors for Patent Images with CNN.**  
-Shuo Jiang, Jianxi Luo, Guillermo Ruiz-Pava, Jie Hu, Christopher Magee.  
-*ASME Journal of Mechanical Design*, 2021.
+15. **Integrating Aesthetic and Emotional Preferences in Social Robot Design.**  
+    Yan Gan, Yingrui Ji, Shuo Jiang, Xinxiong Liu, Zhipeng Feng, Yao Li, Yuan Liu.  
+    International Journal of Industrial Ergonomics, 2021.
 
-**15. Integrating Aesthetic and Emotional Preferences in Social Robot Design.**  
-Yan Gan, Yingrui Ji, Shuo Jiang, Xinxiong Liu, Zhipeng Feng, Yao Li, Yuan Liu.  
-*International Journal of Industrial Ergonomics*, 2021.
+16. **A Convolutional Neural Network-Based Patent Image Retrieval Method for Design Ideation.**  
+    Shuo Jiang, Jianxi Luo, Guillermo Ruiz-Pava, Jie Hu, Christopher Magee.  
+    ASME IDETC-CIE, 2020.
 
-**16. A Convolutional Neural Network-Based Patent Image Retrieval Method for Design Ideation.**  
-Shuo Jiang, Jianxi Luo, Guillermo Ruiz-Pava, Jie Hu, Christopher Magee.  
-*ASME IDETC-CIE*, 2020.
+17. **Exploring the Use of LSTM in Functional-Based Bio-inspired Design.**  
+    Jin Ma, Shuo Jiang, Jie Hu, Jian Shen, Jin Qi, Pan Tian.  
+    International Conference on Design Creativity (ICDC), 2018.
 
-**17. Exploring the Use of LSTM in Functional-Based Bio-inspired Design.**  
-Jin Ma, Shuo Jiang, Jie Hu, Jian Shen, Jin Qi, Pan Tian.  
-*International Conference on Design Creativity (ICDC)*, 2018.
-
-**18. A Tongue Image Separation Method Based on Otsu Thresholding.**  
-Shuo Jiang, Jie Hu, Chunming Xia, Jin Qi, Yinghong Peng.  
-*High Technology Letters*, 2017.
-
-</div>
+18. **A Tongue Image Separation Method Based on Otsu Thresholding.**  
+    Shuo Jiang, Jie Hu, Chunming Xia, Jin Qi, Yinghong Peng.  
+    High Technology Letters, 2017.
 
 ---
 
 ## Patents
-
-<div style="line-height:1.55; font-size: 17px;">
 
 1. DNA Data Storage Method, Reading Method, and Terminal Based on Encoding Optimization.  
    Shuo Jiang, Lushuai Zhang.  
@@ -157,5 +151,3 @@ Shuo Jiang, Jie Hu, Chunming Xia, Jin Qi, Yinghong Peng.
 16. Charpy Impact Specimen Reconstruction Device.  
     Hu Hui, Xuying Fan, Shuo Jiang, Qian Zhang, Qi Wang.  
     CN105817897B, 2018. Granted.
-
-</div>
