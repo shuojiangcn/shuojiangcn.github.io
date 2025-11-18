@@ -47,9 +47,25 @@ title: ""
       where I pursue <em><a href="https://arxiv.org/pdf/2506.09755" target="_blank">Intelligent Design 4.0</a></em>,
       exploring how Foundation AI Models can support end-to-end engineering design creation.</p>
 
-    <p>I co-founded <a href="https://pitchbook.com/profiles/company/490702-69#overview" target="_blank">DigiCodon</a>,
+    <p>Previously, I co-founded <a href="https://pitchbook.com/profiles/company/490702-69#overview" target="_blank">DigiCodon</a>,
       where I served as CTO, building
       <a href="https://en.wikipedia.org/wiki/DNA_digital_data_storage" target="_blank">DNA digital data storage</a> technologies.</p>
+
+      <p>
+        <strong>Google Scholar:</strong>
+        <a href="https://scholar.google.com/citations?hl=en&user=HhNfxUAAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">
+          Shuo Jiang
+        </a>
+      </p>
+
+      <p>
+        <strong>Work Email:</strong> shuo.jiang[DOT]cityu[DOT]edu[DOT]hk
+      </p>
+
+      <p>
+        <strong>Personal Email:</strong> shuojiangcn[DOT]gmail[DOT]com
+      </p>
+
   </div>
 
   <div class="page-image">
