@@ -2,43 +2,19 @@
   <div class="wrapper" style="
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 80px;   /* ← 新增这一行，让 header 内容右侧缩进 */
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 18px;
-      padding-bottom: 18px;
+      padding: 18px 80px;   /* 控制左移和右移距离 */
   ">
-
-    <div style="flex: 1;">
-      {%- if page.url == "/" or page.url == "/index.html" -%}
-        <span class="site-title" style="font-size: 22px; font-weight: 600;">
-          Shuo Jiang
-        </span>
-      {%- else -%}
-        <a class="site-title" rel="author" href="{{ '/' | relative_url }}" style="
-            font-size: 22px;
-            font-weight: 600;
-            color: black;
-            text-decoration: none;
-        ">Shuo Jiang</a>
-      {%- endif -%}
-    </div>
-
-    <nav class="site-nav" style="
-        display: flex;
-        gap: 30px;
-        font-size: 16px;
-        font-weight: 500;
-        justify-content: flex-end;
-        flex: 1;
-    ">
-      <a href="https://scholar.google.com/citations?user=HhNfxUAAAAAJ&hl=en"
-         target="_blank"
-         style="color: black; text-decoration: none;">
-        Research
-      </a>
-    </nav>
-
+    {%- if page.url == "/" or page.url == "/index.html" -%}
+      <span class="site-title" style="font-size: 22px; font-weight: 600;">
+        Shuo Jiang
+      </span>
+    {%- else -%}
+      <a class="site-title" rel="author" href="{{ '/' | relative_url }}" style="
+          font-size: 22px;
+          font-weight: 600;
+          color: black;
+          text-decoration: none;
+      ">Shuo Jiang</a>
+    {%- endif -%}
   </div>
 </header>
