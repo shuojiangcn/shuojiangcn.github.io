@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuo Jiang</title>
+    <meta name="description" content="Shuo Jiang's Personal Website - Research & Engineering">
+    <style>
+        /* --- 1. 全局基础样式 --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #111; /* 深黑色文字，阅读感好 */
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0056b3; /* 经典的学术蓝链接 */
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- 2. 顶部灰色导航栏 (Lex 风格核心) --- */
+        header {
+            background-color: #f4f4f4; /* 浅灰色背景 */
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            height: 50px; /* 固定高度 */
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            position: fixed; /* 顶部固定 */
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* 左侧的名字块 (深一点的灰色) */
+        .brand-box {
+            background-color: #e0e0e0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+            font-weight: 600;
+            color: #333;
+            letter-spacing: 0.5px;
+            margin-right: auto; /* 把右边的导航链接推到最右边 */
+        }
+
+        .brand-box:hover {
+            background-color: #d0d0d0;
+            text-decoration: none;
+        }
+
+        /* 右侧导航 Tab */
+        .nav-links {
+            display: flex;
+            padding-right: 30px;
+        }
+
+        .nav-links a {
+            color: #555;
+            margin-left: 25px; /* 链接之间的间距 */
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        /* --- 3. 页面主体布局 --- */
+        .container {
+            max-width: 800px; /* 限制内容宽度，模仿论文阅读体验 */
+            margin: 0 auto;
+            padding: 40px 20px;
+            padding-top: 90px; /* 为固定的顶部导航栏留出空间 */
+        }
+
+        /* --- 4. 个人简介区 (Profile) --- */
+        .profile-section {
+            display: flex;
+            gap: 40px; /* 图片和文字的间距 */
+            margin-bottom: 60px;
+            align-items: flex-start;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px; /* 轻微圆角，看起来更现代 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-content {
+            flex: 1;
+        }
+
+        .profile-content h1 {
+            margin-top: 0;
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .role-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .social-links {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* --- 5. 列表和标题样式 (Research/Projects) --- */
+        h2 {
+            font-size: 22px;
+            border-bottom: 1px solid #eee; /* 标题下的细分割线 */
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: #000;
+        }
+
+        .item {
+            margin-bottom: 30px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .item-title:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .item-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            font-family: "Georgia", serif; /* 引用部分用衬线体，更有学术感 */
+        }
+
+        .item-summary {
+            font-size: 15px;
+            color: #333;
+        }
+
+        /* --- 6. 移动端适配 --- */
+        @media (max-width: 600px) {
+            .profile-section {
+                flex-direction: column; /* 手机上图片换行 */
+                align-items: center;
+                text-align: center;
+            }
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            .nav-links {
+                display: none; /* 手机屏太窄时隐藏顶部链接，保持极简 */
+            }
+            .brand-box {
+                width: 100%;
+                justify-content: center;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="brand-box">Shuo Jiang</a>
+
+        <div class="nav-links">
+            <a href="#research">Research</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <a href="https://github.com/shuojiangcn" target="_blank">GitHub</a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="profile-section">
+            <img src="assets/profile.jpg" alt="Shuo Jiang" class="profile-img">
+
+            <div class="profile-content">
+                <h1>Shuo Jiang</h1>
+                <span class="role-title">Researcher / Developer / Innovator</span>
+
+                <p>
+                    Hi, I'm Shuo. I am passionate about [简短的一句话介绍你的核心兴趣，例如：Artificial Intelligence and Engineering Design].
+                </p>
+                <p>
+                    I am currently working on [你现在的状态/项目].
+                </p>
+
+                <div class="social-links">
+                    <b>Connect:</b>
+                    <a href="https://github.com/shuojiangcn" target="_blank">GitHub</a>,
+                    <a href="mailto:your_email@example.com">Email</a>,
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="research">Research & Publications</h2>
+
+        <div class="item">
+            <a href="#" class="item-title">Paper Title 1: Advanced Algorithms for XYZ</a>
+            <div class="item-meta">
+                Published in <b>CVPR 2024</b> | <a href="#">PDF</a> | <a href="#">Code</a>
+            </div>
+            <p class="item-summary">
+                <b>Summary:</b> 这里写一段简短的摘要。This paper proposes a novel framework for...
+            </p>
+        </div>
+
+        <div class="item">
+            <a href="#" class="item-title">Paper Title 2: Another Great Research</a>
+            <div class="item-meta">
+                Published in <b>ICLR 2023</b> | <a href="#">PDF</a> | <a href="#">Code</a>
+            </div>
+            <p class="item-summary">
+                <b>Summary:</b> 简要描述你的第二个研究成果。
+            </p>
+        </div>
+
+
+        <h2 id="projects">Selected Projects</h2>
+
+        <div class="item">
+            <a href="#" class="item-title">Project Alpha: AI-Powered Tool</a>
+            <div class="item-meta">
+                Python, PyTorch, React
+            </div>
+            <p class="item-summary">
+                A web application that helps users to [功能描述]. It has over 100+ stars on GitHub.
+            </p>
+        </div>
+
+
+        <h2 id="contact">Contact</h2>
+        <p>
+            Feel free to reach out via email: <a href="mailto:your_email@example.com">your_email@example.com</a>
+        </p>
+        <br><br><br> </div>
+
+</body>
+</html>
