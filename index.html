@@ -6,14 +6,26 @@
     <title>Shuo Jiang</title>
     <meta name="description" content="Shuo Jiang's Personal Website">
     <style>
-        /* --- 全局样式 --- */
+        /* --- 0. 字体定义 (关键修改) --- */
+        :root {
+            /* 字体 1: 标题、导航、人名 (紧凑、粗壮、现代) */
+            /* 对应 Lex 网站的 UI 部分 */
+            --font-heading: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+            /* 字体 2: 正文、自我介绍、论文摘要 (宽松、易读) */
+            /* 使用 Verdana 或 Georgia 可以产生明显的“阅读感” */
+            --font-text: "Verdana", "Geneva", sans-serif;
+        }
+
+        /* --- 1. 全局布局 --- */
         body {
-            font-family: Arial, Helvetica, sans-serif; /* Lex 用的标准无衬线字体 */
+            font-family: var(--font-text); /* 默认使用正文字体 */
             margin: 0;
-            padding: 20px 0; /* 上下留白 */
-            color: #222;
-            line-height: 1.5;
+            padding: 40px 0; /* 页面上下留白 */
+            color: #111;
+            line-height: 1.6;
             background-color: #fff;
+            font-size: 15px; /* 正文基准大小 */
         }
 
         a {
@@ -25,22 +37,24 @@
             text-decoration: underline;
         }
 
-        /* --- 核心容器：控制所有内容居中且等宽 --- */
+        /* --- 2. 核心容器：控制导航和内容一样宽 --- */
         .main-container {
             max-width: 900px; /* 限制整体宽度 */
             margin: 0 auto;   /* 左右自动居中 */
-            padding: 0 15px;  /* 移动端边缘留白 */
+            padding: 0 20px;  /* 移动端边缘留白 */
         }
 
-        /* --- 1. 顶部灰色导航栏 (修正：不再顶格，在容器内) --- */
+        /* --- 3. 顶部灰色导航栏 (修正：在容器内，不顶格) --- */
         .nav-bar {
-            background-color: #f0f0f0; /* 浅灰背景 */
+            font-family: var(--font-heading); /* 使用标题字体 */
+            background-color: #f4f4f4; /* 浅灰背景 */
             display: flex;
             align-items: center;
             justify-content: space-between; /* 左右分布 */
             font-size: 14px;
-            height: 44px; /* 固定高度 */
-            margin-bottom: 40px; /* 导航栏和下方内容的间距 */
+            height: 46px; /* 固定高度 */
+            margin-bottom: 50px; /* 导航栏和下方内容的间距 */
+            border-bottom: 1px solid #ddd; /* 底部细线 */
         }
 
         .nav-left {
@@ -50,8 +64,8 @@
 
         /* 左侧名字块：深灰背景 */
         .brand-box {
-            background-color: #ddd; /* 深一点的灰 */
-            padding: 0 20px;
+            background-color: #e0e0e0; /* 深一点的灰 */
+            padding: 0 25px;
             display: flex;
             align-items: center;
             font-weight: bold;
@@ -60,7 +74,7 @@
         }
 
         .brand-box:hover {
-            background-color: #ccc;
+            background-color: #d0d0d0;
             text-decoration: none;
         }
 
@@ -69,31 +83,33 @@
         }
 
         .nav-right a {
-            color: #666;
-            margin-left: 20px;
+            color: #555;
+            margin-left: 25px;
+            font-weight: 500;
         }
         .nav-right a:hover {
             color: #000;
         }
 
-        /* --- 2. 个人简介 (Profile) --- */
+        /* --- 4. 个人简介 (Profile) --- */
         .profile-section {
             display: flex;
-            gap: 30px;
-            margin-bottom: 50px;
+            gap: 40px;
+            margin-bottom: 60px;
             align-items: flex-start;
-            /* 修正：让内容在视觉上更聚焦 */
-            max-width: 850px;
+            /* 稍微收窄内容区，让文字换行更舒服 */
+            max-width: 860px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .profile-img {
-            width: 160px; /* 控制头像大小 */
-            height: 160px;
+            width: 170px;
+            height: 170px;
             object-fit: cover;
             border-radius: 4px;
-            flex-shrink: 0; /* 防止头像被压缩 */
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .profile-content {
@@ -101,71 +117,93 @@
         }
 
         .profile-content h1 {
-            font-size: 1.5em; /* 名字大小 */
+            font-family: var(--font-heading); /* 名字使用标题字体 */
+            font-size: 26px;
             margin: 0 0 10px 0;
             font-weight: bold;
+            color: #000;
         }
 
-        /* 模仿 Lex 的 "Research interests:" 列表样式 */
-        .interest-list {
-            margin-bottom: 15px;
+        /* Interest List 样式 */
+        .interest-row {
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
         .interest-label {
+            font-family: var(--font-heading); /* 标签使用标题字体 */
             font-weight: bold;
+            color: #000;
         }
 
-        /* --- 3. Research & Publications 样式 (严格复刻) --- */
+        /* --- 5. Research & Publications (字体区分核心区) --- */
+        .section-header {
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 35px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee; /* 标题下方的淡淡分割线 */
+        }
+
         .section-title {
-            text-align: center; /* 标题居中 */
+            font-family: var(--font-heading); /* 大标题使用标题字体 */
             font-size: 24px;
-            font-weight: normal; /* 原版标题其实不粗 */
-            margin-bottom: 30px;
-            margin-top: 50px;
+            font-weight: normal; /* Lex 风格：大标题不加粗 */
+            color: #000;
         }
 
         .section-title a {
-            color: #222; /* 标题颜色 */
+            color: #207ab7;
+            font-size: 0.7em;
         }
 
+        /* 每一篇论文的容器 */
         .research-item {
-            margin-bottom: 25px; /* 每个条目间的间距 */
-            text-align: left; /* 强制左对齐 */
+            margin-bottom: 30px;
+            text-align: left;
         }
 
-        /* 论文标题：加粗，黑色 */
+        /* 论文标题：必须是标题字体，加粗 */
         .paper-title {
             display: block;
+            font-family: var(--font-heading); /* 使用标题字体 */
             font-weight: bold;
             font-size: 16px;
             color: #000;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             text-decoration: none;
         }
 
-        /* 链接行：Paper (Cite: BibTex...) */
-        .paper-links {
-            font-size: 14px;
-            color: #000;
-            margin-bottom: 4px;
-        }
-        .paper-links a {
+        .paper-title:hover {
             color: #207ab7;
         }
+
+        /* 链接行 */
+        .paper-links {
+            font-family: var(--font-heading); /* 链接行也属于元数据，用标题字体 */
+            font-size: 13px;
+            color: #000;
+            margin-bottom: 6px;
+        }
+
         .cite-text {
-            color: #000; /* 原版括号里的字是黑的 */
+            color: #333;
         }
 
-        /* 摘要行：红色斜体前缀 */
+        /* 摘要部分：必须是正文字体，且稍有不同 */
         .paper-summary {
-            font-size: 15px;
-            color: #555; /* 摘要正文颜色 */
+            font-family: var(--font-text); /* 明确使用正文字体 */
+            font-size: 14px; /* 摘要稍微小一点点，显得精致 */
+            color: #444; /* 字色稍浅，区分标题 */
             margin: 0;
+            line-height: 1.5;
         }
 
+        /* 摘要前的 "Summary:" 红色斜体 */
         .summary-label {
             color: #bd2c00; /* 深红色 */
-            font-style: italic; /* 斜体 */
-            margin-right: 4px;
+            font-style: italic;
+            font-family: var(--font-heading); /* 标签本身可以用 heading 字体保持结构感 */
+            margin-right: 5px;
         }
 
         /* --- 移动端适配 --- */
@@ -175,14 +213,15 @@
                 align-items: center;
                 text-align: center;
             }
-            .nav-bar {
-                font-size: 12px; /* 手机上字小一点 */
+            .nav-right {
+                display: none; /* 手机上隐藏右侧菜单，保持极简 */
             }
-            .nav-right a {
-                margin-left: 10px;
+            .nav-bar {
+                justify-content: center; /* 手机上名字居中 */
             }
             .brand-box {
-                padding: 0 10px;
+                background-color: transparent; /* 手机上名字背景透明 */
+                padding: 0;
             }
         }
     </style>
@@ -196,9 +235,10 @@
                 <a href="#" class="brand-box">Shuo Jiang</a>
             </div>
             <div class="nav-right">
-                <a href="#">YouTube</a>
-                <a href="#">X / Twitter</a>
+                <a href="#research">Research</a>
+                <a href="#projects">Projects</a>
                 <a href="mailto:your@email.com">Contact</a>
+                <a href="https://github.com/shuojiangcn" target="_blank">GitHub</a>
             </div>
         </nav>
 
@@ -208,36 +248,36 @@
             <div class="profile-content">
                 <h1>Shuo Jiang</h1>
 
-                <div class="interest-list">
+                <div class="interest-row">
                     <span class="interest-label">Research interests:</span>
                     Design Automation, Artificial Intelligence, Human-AI Interaction.
                 </div>
 
-                <div class="interest-list">
+                <div class="interest-row">
                     <span class="interest-label">Other interests:</span>
                     History, Philosophy, Engineering, Hiking.
                 </div>
 
                 <p>
-                    <b>Beyond the above, I also enjoy:</b><br>
-                    - <a href="#">Programming & Open Source</a><br>
-                    - <a href="#">Writing & Blogging</a>
+                    I am currently a researcher focusing on [简短描述].
+                    Below is a collection of my research and projects.
                 </p>
 
-                <p>
-                    <b>Contact me:</b> <a href="mailto:your@email.com">Check out the Contact Page</a>.<br>
-                    <b>Connect:</b> <a href="#">X</a>, <a href="#">LinkedIn</a>, <a href="#">GitHub</a>.
-                </p>
+                <div class="interest-row">
+                    <span class="interest-label">Connect:</span>
+                    <a href="#">X / Twitter</a>, <a href="#">LinkedIn</a>, <a href="#">GitHub</a>.
+                </div>
             </div>
         </div>
 
-        <h2 class="section-title">
-            Research & Publications
-            <span style="font-size: 0.7em; color: #207ab7;">(Google Scholar)</span>
-        </h2>
+        <div class="section-header">
+            <div class="section-title">
+                Research & Publications <a href="#">(Google Scholar)</a>
+            </div>
+        </div>
 
         <div class="research-item">
-            <div class="paper-title">Arguing Machines: Human Supervision of Black Box AI Systems</div>
+            <a href="#" class="paper-title">Arguing Machines: Human Supervision of Black Box AI Systems</a>
 
             <div class="paper-links">
                 <a href="#">Paper</a>
@@ -251,7 +291,7 @@
         </div>
 
         <div class="research-item">
-            <div class="paper-title">Cognitive Load Estimation in the Wild</div>
+            <a href="#" class="paper-title">Cognitive Load Estimation in the Wild</a>
 
             <div class="paper-links">
                 <a href="#">Paper</a>
@@ -265,7 +305,7 @@
         </div>
 
         <div class="research-item">
-            <div class="paper-title">MIT Advanced Vehicle Technology Study</div>
+            <a href="#" class="paper-title">MIT Advanced Vehicle Technology Study</a>
 
             <div class="paper-links">
                 <a href="#">Website</a> - <a href="#">Paper</a>
