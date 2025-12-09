@@ -1,6 +1,0 @@
----
-layout: none
-permalink: /research/
----
-
-<meta http-equiv="refresh" content="0; url=https://scholar.google.com/citations?user=HhNfxUAAAAAJ&hl=en" />
