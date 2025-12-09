@@ -21,8 +21,7 @@
             margin: 0;
             padding: 40px 0;
             color: #111;
-            /* [修改 1] 行间距减小 */
-            line-height: 1.45;
+            line-height: 1.5; /* 保持紧凑的阅读感 */
             background-color: #fff;
             font-size: 15px;
         }
@@ -65,8 +64,7 @@
             padding: 0 25px;
             display: flex;
             align-items: center;
-            /* [修改 4] 名字不再加粗 */
-            font-weight: normal;
+            font-weight: normal; /* 名字不加粗 */
             color: #333;
             height: 100%;
         }
@@ -92,7 +90,7 @@
         .profile-section {
             display: flex;
             gap: 40px;
-            margin-bottom: 40px; /* 稍微减小简介和下方的间距 */
+            margin-bottom: 50px;
             align-items: flex-start;
             max-width: 860px;
             margin-left: auto;
@@ -109,34 +107,40 @@
         }
 
         .profile-content h1 {
-            /* [修改 5] 名字字号大幅减小，仅略大于正文 */
-            font-size: 19px;
-            margin: 0 0 8px 0;
+            font-size: 19px; /* 名字字号克制 */
+            margin: 0 0 10px 0;
             font-weight: bold;
             color: #000;
         }
 
         .interest-row {
-            margin-bottom: 8px; /* 列表间距也微调紧凑一点 */
-            line-height: 1.45;
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
         .interest-label {
             font-weight: bold;
             color: #000;
         }
 
+        /* 增加段落间距 */
+        .bio-text {
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
         /* --- 5. Research & Publications 标题 --- */
         .section-header {
             text-align: center;
-            /* [修改 3] 上下间距大幅减小 */
             margin-top: 30px;
             margin-bottom: 20px;
             padding-bottom: 10px;
+            /* 这里的 ID 用于导航跳转 */
+            scroll-margin-top: 60px; /* 避免跳转时被导航栏遮挡 */
         }
 
         .section-title {
             font-family: var(--special-title-font);
-            /* [修改 2] 标题字号减小 */
             font-size: 22px;
             font-weight: 300;
             color: #000;
@@ -160,7 +164,7 @@
         .paper-title {
             display: block;
             font-weight: bold;
-            font-size: 16px; /* 论文题目保持突出，比正文略大 */
+            font-size: 16px;
             color: #000;
             margin-bottom: 2px;
         }
@@ -175,7 +179,7 @@
             font-size: 14px;
             color: #444;
             margin: 0;
-            line-height: 1.45; /* 摘要行距跟随全局变小 */
+            line-height: 1.45;
         }
 
         .summary-label {
@@ -228,27 +232,29 @@
 
                 <div class="interest-row">
                     <span class="interest-label">Research interests:</span>
-                    Design Automation, Artificial Intelligence, Human-AI Interaction.
+                    AI for Engineering Design, Engineering AGI, Disruptive Engineering Systems.
                 </div>
 
-                <div class="interest-row">
-                    <span class="interest-label">Other interests:</span>
-                    History, Philosophy, Engineering, Hiking.
-                </div>
-
-                <p>
-                    I am currently a researcher focusing on [简短描述].
-                    Below is a collection of my research and projects.
+                <p class="bio-text">
+                    I am currently a Postdoctoral Research Fellow at City University of Hong Kong, hosted by Prof. Jianxi Luo.
+                </p>
+                <p class="bio-text">
+                    I hold a Ph.D. from SJTU (China) and have worked as a researcher at MIT (USA) and SUTD (Singapore). I also co-founded a YC China–backed, VC-funded startup, DigiCodon, with an MIT alumni team in Hangzhou (China).
                 </p>
 
-                <div class="interest-row">
+                <div class="interest-row" style="margin-top: 15px;">
+                    <span class="interest-label">I enjoy endurance training:</span>
+                    Full Marathon PR 3:14, Half Marathon PR 1:30, Hyrox Men Open PR 1:47.
+                </div>
+
+                <div class="interest-row" style="margin-top: 15px;">
                     <span class="interest-label">Connect:</span>
                     <a href="#">X / Twitter</a>, <a href="#">LinkedIn</a>, <a href="#">GitHub</a>.
                 </div>
             </div>
         </div>
 
-        <div class="section-header">
+        <div class="section-header" id="research">
             <div class="section-title">
                 Research & Publications <a href="#">(Google Scholar)</a>
             </div>
@@ -282,17 +288,24 @@
             </p>
         </div>
 
+
+        <div class="section-header" id="projects" style="margin-top: 60px;">
+            <div class="section-title">
+                Selected Projects
+            </div>
+        </div>
+
         <div class="research-item">
-            <a href="#" class="paper-title">MIT Advanced Vehicle Technology Study</a>
+            <a href="#" class="paper-title">AutoTRIZ: AI-Driven Design Tool</a>
 
             <div class="paper-links">
-                <a href="#">Website</a> - <a href="#">Paper</a>
-                <span class="cite-text">(Cite: <a href="#">BibTeX</a>, <a href="#">Scholar</a>)</span>
+                <span style="color: #666;">TypeScript, Next.js, OpenAI API</span>
+                | <a href="#" target="_blank">Live Demo</a>
             </div>
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                Large-scale real-world AI-assisted driving data collection study to understand how human-AI interaction in driving can be safe and enjoyable.
+                Developed a generative AI tool that helps engineers solve contradictions in design using TRIZ principles.
             </p>
         </div>
 
