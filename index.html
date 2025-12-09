@@ -8,11 +8,10 @@
     <style>
         /* --- 0. 字体定义 --- */
         :root {
-            /* 字体 A: 正文/大部分内容 (Verdana - 宽扁、易读) */
+            /* 字体 A: 正文 (Verdana) */
             --main-font: "Verdana", "Geneva", sans-serif;
 
-            /* 字体 B: 仅用于 "Research & Publications" 标题 */
-            /* 已移除 Arial，改用 Segoe UI (Windows) 配合 Helvetica (Mac) */
+            /* 字体 B: 仅用于 Research 标题 (Helvetica / Segoe UI) */
             --special-title-font: "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
         }
 
@@ -22,7 +21,8 @@
             margin: 0;
             padding: 40px 0;
             color: #111;
-            line-height: 1.6;
+            /* [修改 1] 行间距减小 */
+            line-height: 1.45;
             background-color: #fff;
             font-size: 15px;
         }
@@ -65,7 +65,8 @@
             padding: 0 25px;
             display: flex;
             align-items: center;
-            font-weight: bold;
+            /* [修改 4] 名字不再加粗 */
+            font-weight: normal;
             color: #333;
             height: 100%;
         }
@@ -91,7 +92,7 @@
         .profile-section {
             display: flex;
             gap: 40px;
-            margin-bottom: 60px;
+            margin-bottom: 40px; /* 稍微减小简介和下方的间距 */
             align-items: flex-start;
             max-width: 860px;
             margin-left: auto;
@@ -108,33 +109,35 @@
         }
 
         .profile-content h1 {
-            font-size: 26px;
-            margin: 0 0 10px 0;
+            /* [修改 5] 名字字号大幅减小，仅略大于正文 */
+            font-size: 19px;
+            margin: 0 0 8px 0;
             font-weight: bold;
             color: #000;
         }
 
         .interest-row {
-            margin-bottom: 12px;
-            line-height: 1.5;
+            margin-bottom: 8px; /* 列表间距也微调紧凑一点 */
+            line-height: 1.45;
         }
         .interest-label {
             font-weight: bold;
             color: #000;
         }
 
-        /* --- 5. Research & Publications 标题 (特殊处理) --- */
+        /* --- 5. Research & Publications 标题 --- */
         .section-header {
             text-align: center;
-            margin-top: 60px;
-            margin-bottom: 35px;
+            /* [修改 3] 上下间距大幅减小 */
+            margin-top: 30px;
+            margin-bottom: 20px;
             padding-bottom: 10px;
         }
 
         .section-title {
-            /* !!! 这里使用了特殊字体 (Helvetica / Segoe UI) !!! */
             font-family: var(--special-title-font);
-            font-size: 32px;
+            /* [修改 2] 标题字号减小 */
+            font-size: 22px;
             font-weight: 300;
             color: #000;
             letter-spacing: -0.5px;
@@ -143,36 +146,36 @@
         .section-title a {
             font-family: var(--special-title-font);
             color: #207ab7;
-            font-size: 0.6em;
+            font-size: 0.7em;
             font-weight: 400;
             vertical-align: middle;
         }
 
-        /* --- 6. 论文列表 (Verdana) --- */
+        /* --- 6. 论文列表 --- */
         .research-item {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: left;
         }
 
         .paper-title {
             display: block;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 16px; /* 论文题目保持突出，比正文略大 */
             color: #000;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .paper-links {
             font-size: 13px;
             color: #000;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .paper-summary {
             font-size: 14px;
             color: #444;
             margin: 0;
-            line-height: 1.5;
+            line-height: 1.45; /* 摘要行距跟随全局变小 */
         }
 
         .summary-label {
