@@ -201,6 +201,55 @@
             margin-right: 5px;
         }
 
+        /* --- 8. 模态框 (Modal) 样式 (新增) --- */
+        .modal {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            z-index: 2000; /* 确保它在最顶层，高于其他内容 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* 如果内容过多允许滚动 */
+            background-color: rgba(0,0,0,0.8); /* 黑色半透明背景 */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 顶部和底部有一点距离 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 650px; /* 限制 Strava 嵌入窗口的宽度 */
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            font-family: var(--main-font);
+            font-size: 1.2em;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            margin-top: -10px; /* 稍微向上移动 */
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         /* --- 移动端适配 --- */
         @media (max-width: 600px) {
             .profile-section {
@@ -222,42 +271,101 @@
     </style>
 
     <script>
+        // 确保 Strava 模态框内的元素存在 (这里只保留了主要的交互逻辑)
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Patents 折叠功能 ---
-            var trigger = document.getElementById("patents-trigger");
-            var content = document.getElementById("patents-content");
-            var statusElement = document.getElementById("patents-status");
 
-            if (trigger && content && statusElement) {
+            // --- Patents 折叠功能 (保持不变) ---
+            var triggerPatents = document.getElementById("patents-trigger");
+            var contentPatents = document.getElementById("patents-content");
+            var statusElementPatents = document.getElementById("patents-status");
 
-                // [关键修复] 强制 Patents 内容默认隐藏，并设置初始状态文字
-                content.style.display = 'none'; // 强制隐藏
-                content.classList.remove('active'); // 确保没有激活类
-                statusElement.textContent = '(Click to Expand)'; // 默认文字
+            if (triggerPatents && contentPatents && statusElementPatents) {
+                contentPatents.style.display = 'none';
+                statusElementPatents.textContent = '(Click to Expand)';
+                var collapseIcon = triggerPatents.querySelector('.collapse-icon');
+                if (collapseIcon) collapseIcon.textContent = ' ►';
 
-                // 确保折叠图标默认指向右
-                var collapseIcon = trigger.querySelector('.collapse-icon');
-                if (collapseIcon) {
-                    collapseIcon.textContent = ' ►';
-                }
-
-                trigger.addEventListener("click", function() {
-                    // 切换 'active' 类和 display 属性
-                    var isHidden = content.style.display === 'none';
-
+                triggerPatents.addEventListener("click", function() {
+                    var isHidden = contentPatents.style.display === 'none';
                     if (isHidden) {
-                        content.style.display = 'block';
-                        statusElement.textContent = '';
+                        contentPatents.style.display = 'block';
+                        statusElementPatents.textContent = '(Click to Collapse)';
                         if (collapseIcon) collapseIcon.textContent = ' ▼';
                     } else {
-                        content.style.display = 'none';
-                        statusElement.textContent = '(Click to Expand)';
+                        contentPatents.style.display = 'none';
+                        statusElementPatents.textContent = '(Click to Expand)';
                         if (collapseIcon) collapseIcon.textContent = ' ►';
                     }
                 });
             }
 
-            // --- 导航栏滚动修正 ---
+            // --- Strava 模态框功能 (激活通用逻辑) ---
+            var modal = document.getElementById("stravaModal");
+            var closeButton = modal ? modal.querySelector(".close-button") : null;
+            var embedContainer = modal ? modal.querySelector("#stravaEmbedContainer") : null;
+            var modalTitle = modal ? modal.querySelector("h3") : null; // 假设 h3 是标题
+
+            // 通用函数：打开模态框并加载内容
+            function openStravaModal(linkElement) {
+                var activityId = linkElement.getAttribute('data-strava-id');
+                var activityText = linkElement.textContent.trim();
+
+                if (activityId && modal && embedContainer && modalTitle) {
+                    // 1. 设置模态框标题
+                    modalTitle.textContent = activityText;
+
+                    // 2. 动态加载 Strava 嵌入代码
+
+                    // 清空并重建容器，确保 Strava 脚本能正确初始化新的 ID
+                    embedContainer.innerHTML = '';
+
+                    var newPlaceholder = document.createElement('div');
+                    newPlaceholder.className = 'strava-embed-placeholder';
+                    newPlaceholder.setAttribute('data-embed-type', 'activity');
+                    newPlaceholder.setAttribute('data-embed-id', activityId); // 注入新的ID
+                    newPlaceholder.setAttribute('data-style', 'standard');
+                    newPlaceholder.setAttribute('data-from-embed', 'false');
+
+                    embedContainer.appendChild(newPlaceholder);
+
+                    // 重新初始化 Strava 脚本
+                    if (typeof StravaEmbeds === 'object' && typeof StravaEmbeds.init === 'function') {
+                        StravaEmbeds.init();
+                    } else {
+                         // 兜底方案：如果 StravaEmbeds 脚本还没有加载完成，重新插入
+                         var script = document.createElement('script');
+                         script.src = 'https://strava-embeds.com/embed.js';
+                         document.body.appendChild(script);
+                    }
+
+                    // 3. 显示模态框
+                    modal.style.display = "block";
+                }
+            }
+
+            // 监听所有 Strava 链接的点击事件 (包括全马和半马)
+            document.querySelectorAll('#marathonPRLink, #halfMarathonPRLink').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openStravaModal(this);
+                });
+            });
+
+            // 关闭模态框 (点击 X 按钮)
+            if (closeButton) {
+                closeButton.addEventListener('click', function() {
+                    modal.style.display = "none";
+                });
+            }
+
+            // 关闭模态框 (点击模态框外部)
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            // --- 3. 导航栏滚动修正 ---
             document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -268,6 +376,17 @@
             });
         });
     </script>
+
+    <div id="stravaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Strava Activity Proof</h3>
+            <div id="stravaEmbedContainer">
+                </div>
+        </div>
+    </div>
+
+    <script src="https://strava-embeds.com/embed.js"></script>
 
 </head>
 <body>
@@ -311,7 +430,10 @@
                 </div>
 
                 <div class="interest-row" style="margin-top: 15px;">
-                    <span class="interest-label">I enjoy endurance sports</span> and train under <a href="https://m4jing.github.io/about/">Coach Jing Ma (CUPES)</a>. My personal bests (PBs) are: Marathon 3:14:30, Half Marathon 1:30:02, HYROX Solo 1:47:46.
+                    <span class="interest-label">I enjoy endurance sports</span>. My PBs:
+                    <a href="#" id="marathonPRLink" data-strava-id="16075165402">Marathon 3:14</a>,
+                    <a href="#" id="halfMarathonPRLink" data-strava-id="16081726068">Half 1:30</a>,
+                    <a href="https://results.hyrox.com/season-8/?content=detail&fpid=search&pid=search&idp=LR3MS4JI4192CE&lang=EN_CAP&event=H_LR3MS4JIFA2&pidp=ranking_nav&search%5Bname%5D=%E5%A7%9C&search%5Bfirstname%5D=%E6%9C%94&search%5Bsex%5D=M&search%5Bage_class%5D=%25&search%5Bnation%5D=%25&search_event=H_LR3MS4JIFA2">HYROX Solo 1:47</a>.
                 </div>
 
                 <!-- <div class="interest-row" style="margin-top: 15px;">
