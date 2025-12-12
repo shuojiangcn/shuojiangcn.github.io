@@ -13,6 +13,9 @@
 
             /* 字体 B: 仅用于 Research 标题 (Helvetica / Segoe UI) */
             --special-title-font: "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
+
+            /* [关键修正] 定义链接蓝色变量，供全局使用 */
+            --link-blue: #207ab7;
         }
 
         /* --- 1. 全局布局 --- */
@@ -161,12 +164,22 @@
             text-align: left;
         }
 
-        .paper-title {
+        /* 论文标题是链接，所以需要用 a.paper-title 覆盖默认的 a 样式 */
+        a.paper-title {
             display: block;
             font-weight: bold;
             font-size: 16px;
-            color: #000;
+            color: #000 !important;
             margin-bottom: 2px;
+            text-decoration: underline; /* 默认无下划线 */
+            transition: color 0.2s; /* 颜色变化增加一点点平滑过渡 */
+        }
+
+        /* 鼠标悬停变蓝，有下划线 */
+        a.paper-title:hover {
+            /* 悬停时强制变蓝 */
+            color: var(--link-blue) !important;
+            text-decoration: underline; /* 悬停时显示下划线 */
         }
 
         .paper-links {
@@ -207,6 +220,55 @@
             }
         }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Patents 折叠功能 ---
+            var trigger = document.getElementById("patents-trigger");
+            var content = document.getElementById("patents-content");
+            var statusElement = document.getElementById("patents-status");
+
+            if (trigger && content && statusElement) {
+
+                // [关键修复] 强制 Patents 内容默认隐藏，并设置初始状态文字
+                content.style.display = 'none'; // 强制隐藏
+                content.classList.remove('active'); // 确保没有激活类
+                statusElement.textContent = '(Click to Expand)'; // 默认文字
+
+                // 确保折叠图标默认指向右
+                var collapseIcon = trigger.querySelector('.collapse-icon');
+                if (collapseIcon) {
+                    collapseIcon.textContent = ' ►';
+                }
+
+                trigger.addEventListener("click", function() {
+                    // 切换 'active' 类和 display 属性
+                    var isHidden = content.style.display === 'none';
+
+                    if (isHidden) {
+                        content.style.display = 'block';
+                        statusElement.textContent = '';
+                        if (collapseIcon) collapseIcon.textContent = ' ▼';
+                    } else {
+                        content.style.display = 'none';
+                        statusElement.textContent = '(Click to Expand)';
+                        if (collapseIcon) collapseIcon.textContent = ' ►';
+                    }
+                });
+            }
+
+            // --- 导航栏滚动修正 ---
+            document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+
 </head>
 <body>
 
@@ -231,17 +293,15 @@
                 <h1>Dr. Shuo Jiang</h1>
 
                 <p class="bio-text">
-                    I am currently a Postdoctoral Research Fellow at City University of Hong Kong, hosted by
-                    <a href="https://www.cityu.edu.hk/stfprofile/jianxiluo.htm" target="_blank">Prof. Jianxi Luo</a>.
+                    I am currently a Postdoctoral Research Fellow at City University of Hong Kong, working with
+                    <a href="https://www.cityu.edu.hk/stfprofile/jianxiluo.htm" target="_blank">Prof. Jianxi Luo</a>, to ground <a href="https://link.springer.com/book/9783032133526" target="_blank">design science</a> in the development of the next-generation AI-driven engineering design paradigm <a href="https://doi.org/10.1115/1.4070438" target="_blank">(ID4.0)</a>.
                 </p>
 
                 <p class="bio-text">
                     I hold a Ph.D. from SJTU (China) and have worked as a researcher at MIT (USA) and SUTD (Singapore).
-                    I have co-founded a
-                    <a href="https://www.miracleplus.com/" target="_blank">YC China-backed</a>,
-                    multiple VC-funded startup,
-                    <a href="https://pitchbook.com/profiles/company/490702-69" target="_blank">DigiCodon</a>,
-                    with an MIT alumni team in Hangzhou.
+                    I co-founded <a href="https://mp.weixin.qq.com/s/XCjYqdVrcQeejbNgmDs9wg" target="_blank">DigiCodon</a>,
+                    a <a href="https://www.miracleplus.com/" target="_blank">YC China-backed</a>,
+                    <a href="https://pitchbook.com/profiles/company/490702-69" target="_blank">multiple VC-funded</a> startup, with an MIT alumni team in Hangzhou.
                 </p>
 
                 <div class="interest-row">
@@ -251,8 +311,7 @@
                 </div>
 
                 <div class="interest-row" style="margin-top: 15px;">
-                    <span class="interest-label">I enjoy endurance sports.</span>
-                    My PR: Marathon 3:14, Half 1:30, Hyrox Solo 1:47.
+                    <span class="interest-label">I enjoy endurance sports</span> and train under <a href="https://m4jing.github.io/about/">Coach Jing Ma (CUPES)</a>. My personal bests (PBs) are: Marathon 3:14:30, Half Marathon 1:30:02, HYROX Solo 1:47:46.
                 </div>
 
                 <!-- <div class="interest-row" style="margin-top: 15px;">
@@ -272,21 +331,25 @@
 
             <div class="paper-header">
                 <span class="paper-title">
-                    Intelligent Design 4.0: Paradigm Evolution Toward the Agentic AI Era ｜
-                    <a href="https://doi.org/10.1115/1.4070438" class="paper-link">
-                        <u>Paper</u>
+                    <a href="https://doi.org/10.1115/1.4070438" class="paper-title">
+                        <u>Intelligent Design 4.0: Paradigm Evolution Toward the Agentic AI Era</u>
                     </a>
                 </span>
             </div>
 
+            <div class="paper-links">
+                <span style="color: #666;">Engineering Design, Large Language Models, Multi-Agent Systems</span>
+                | <a href="https://arxiv.org/pdf/2506.09755" target="_blank">Preprint</a>
+            </div>
+
             <div class="paper-authors">
                 <strong><u>S. Jiang</u></strong>, M. Xie, F. Y. Chen, J. Ma, J. Luo.
-                <em>ASME Journal of Computing and Information Science in Engineering</em>, 2025.
+                <em>ASME Journal of Computing and Information Science in Engineering</em>, 2025, 25(12): 120808.
             </div>
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                HAHAHAHAHAHAHA
+                This paper introduces Intelligent Design 4.0 (ID4.0), a new paradigm enabled by foundation model-based agentic AI, and reviews the evolution of intelligent design from rule-based systems to multi-agent collaboration. It proposes an ontological framework for ID 4.0 and discusses its potential for end-to-end design automation, along with key challenges and opportunities in data, agent coordination, and problem formulation.
             </p>
         </div>
 
@@ -295,11 +358,15 @@
 
             <div class="paper-header">
                 <span class="paper-title">
-                    Large Language Models for Combinatorial Optimization of Design Structure Matrix ｜
-                    <a href="https://arxiv.org/abs/2411.12571" class="paper-link">
-                        <u>Paper</u>
+                    <a href="https://doi.org/10.1017/pds.2025.10234" class="paper-title">
+                        <u>Large Language Models for Combinatorial Optimization of Design Structure Matrix</u>
                     </a>
                 </span>
+            </div>
+
+            <div class="paper-links">
+                <span style="color: #666;">Design Structure Matrix, Large Language Models, Combinatorial Optimization</span>
+                | <a href="https://arxiv.org/pdf/2506.09749" target="_blank">Preprint</a>
             </div>
 
             <div class="paper-authors">
@@ -310,7 +377,7 @@
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                HAHAHAHAHAHAHA
+                This paper explores the use of LLMs for engineering combinatorial optimization by leveraging their reasoning capabilities and contextual knowledge. It proposes an LLM-based framework for optimizing Design Structure Matrix (DSM) sequencing and demonstrates faster convergence and higher solution quality than benchmark methods, with further gains from incorporating domain context.
             </p>
         </div>
 
@@ -319,11 +386,16 @@
 
             <div class="paper-header">
                 <span class="paper-title">
-                    AutoTRIZ: Automating engineering innovation with TRIZ and large language models ｜
-                    <a href="https://doi.org/10.1016/j.aei.2025.103312" class="paper-link">
-                        <u>Paper</u>
+                    <a href="https://doi.org/10.1016/j.aei.2025.103312" class="paper-title">
+                        <u>AutoTRIZ: Automating Engineering Innovation with TRIZ and Large Language Models</u>
                     </a>
                 </span>
+            </div>
+
+            <div class="paper-links">
+                <span style="color: #666;">Design Ideation, Large Language Models, TRIZ</span>
+                | <a href="https://arxiv.org/pdf/2403.13002" target="_blank">Preprint</a>
+                | <a href="https://www.autotriz.ai/" target="_blank">Live Demo</a>
             </div>
 
             <div class="paper-authors">
@@ -333,7 +405,7 @@
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                HAHAHAHAHAHAHA
+                This paper introduces AutoTRIZ, an AI-based ideation system that integrates LLMs to automate and enhance the TRIZ methodology for engineering innovation. AutoTRIZ takes a user-defined problem statement as input, conducts the TRIZ reasoning process automatically, and generates structured solution reports, with its effectiveness demonstrated through textbook cases and a real-world battery thermal management system design.
             </p>
         </div>
 
@@ -342,11 +414,15 @@
 
             <div class="paper-header">
                 <span class="paper-title">
-                    Deep Learning for Technical Document Classification ｜
-                    <a href="https://doi.org/10.1109/TEM.2022.3152216" class="paper-link">
-                        <u>Paper</u>
+                    <a href="https://doi.org/10.1109/TEM.2022.3152216" class="paper-title">
+                        <u>Deep Learning for Technical Document Classification</u>
                     </a>
                 </span>
+            </div>
+
+            <div class="paper-links">
+                <span style="color: #666;">Engineering Management, Deep Learning, Document Classification</span>
+                | <a href="https://arxiv.org/pdf/2106.14269" target="_blank">Preprint</a>
             </div>
 
             <div class="paper-authors">
@@ -356,7 +432,7 @@
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                HAHAHAHAHAHAHA
+                This paper presents TechDoc, a multimodal deep learning architecture for scalable and automated technical document classification. By integrating textual content, document images, and inter-document associations using convolutional, recurrent, and graph neural networks, the approach achieves higher classification accuracy than unimodal and state-of-the-art benchmark methods.
             </p>
         </div>
 
@@ -365,11 +441,15 @@
 
             <div class="paper-header">
                 <span class="paper-title">
-                    Technology Fitness Landscape for Design Innovation: A Deep Neural Embedding Approach Based on Patent Data ｜
-                    <a href="https://doi.org/10.1080/09544828.2022.2143155" class="paper-link">
-                        <u>Paper</u>
+                    <a href="https://doi.org/10.1080/09544828.2022.2143155" class="paper-title">
+                        <u>Technology Fitness Landscape for Design Innovation: A Deep Neural Embedding Approach Based on Patent Data</u>
                     </a>
                 </span>
+            </div>
+
+            <div class="paper-links">
+                <span style="color: #666;">Design Innovation, Deep Learning, Technological Forecast</span>
+                | <a href="https://arxiv.org/pdf/2110.13624" target="_blank">Preprint</a>
             </div>
 
             <div class="paper-authors">
@@ -379,7 +459,7 @@
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                HAHAHAHAHAHAHA
+                This paper constructs a technology fitness landscape using deep neural embeddings of patent data to characterize technological change across 1,757 domains. The landscape provides a bird’s-eye view of the technology space, revealing heterogeneous improvement rates and offering a biologically inspired way to interpret technology evolution and future innovation directions.
             </p>
         </div>
 
@@ -388,11 +468,15 @@
 
             <div class="paper-header">
                 <span class="paper-title">
-                    Patent Data for Engineering Design: A Critical Review and Future Directions ｜
-                    <a href="https://doi.org/10.1115/1.4054802" class="paper-link">
-                        <u>Paper</u>
+                    <a href="https://doi.org/10.1115/1.4054802" class="paper-title">
+                        <u>Patent Data for Engineering Design: A Critical Review and Future Directions</u>
                     </a>
                 </span>
+            </div>
+
+            <div class="paper-links">
+                <span style="color: #666;">Engineering Design, Patent Data, Review</span>
+                | <a href="https://arxiv.org/pdf/2111.08500" target="_blank">Preprint</a>
             </div>
 
             <div class="paper-authors">
@@ -402,7 +486,7 @@
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                HAHAHAHAHAHAHA
+                This paper surveys and categorizes research that uses patent data for engineering design, organizing the literature by contributions to design theories, methods, tools, and strategies, as well as by data types and analytical approaches. It highlights how advances in AI and data science create new opportunities for patent-driven design research and outlines promising future research directions.
             </p>
         </div>
 
@@ -411,11 +495,15 @@
 
             <div class="paper-header">
                 <span class="paper-title">
-                    Data-Driven Design-By-Analogy: State-of-the-Art and Future Directions ｜
-                    <a href="https://doi.org/10.1115/1.4051681" class="paper-link">
-                        <u>Paper</u>
+                    <a href="https://doi.org/10.1115/1.4051681" class="paper-title">
+                        <u>Data-Driven Design-By-Analogy: State-of-the-Art and Future Directions</u>
                     </a>
                 </span>
+            </div>
+
+            <div class="paper-links">
+                <span style="color: #666;">Design-by-Analogy, Data-Driven Design, Review</span>
+                | <a href="https://arxiv.org/pdf/2106.01592" target="_blank">Preprint</a>
             </div>
 
             <div class="paper-authors">
@@ -425,7 +513,7 @@
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                HAHAHAHAHAHAHA
+                This paper surveys data-driven design-by-analogy (DbA) research enabled by large-scale design databases and advances in data science and AI. It categorizes existing studies into analogy encoding, retrieval, mapping, and evaluation, and identifies promising future research directions, including a conceptual integrated data-driven DbA system.
             </p>
         </div>
 
@@ -434,11 +522,14 @@
 
             <div class="paper-header">
                 <span class="paper-title">
-                    Deriving Design Feature Vectors for Patent Images with Convolutional Neural Network ｜
-                    <a href="https://doi.org/10.1115/1.4049214" class="paper-link">
-                        <u>Paper</u>
+                    <a href="https://doi.org/10.1115/1.4049214" class="paper-title">
+                        <u>Deriving Design Feature Vectors for Patent Images with Convolutional Neural Network</u>
                     </a>
                 </span>
+            </div>
+
+            <div class="paper-links">
+                <span style="color: #666;">Conceptual Design, Deep Learning, Design-by-Analogy</span>
             </div>
 
             <div class="paper-authors">
@@ -448,30 +539,205 @@
 
             <p class="paper-summary">
                 <span class="summary-label">Summary:</span>
-                HAHAHAHAHAHAHA
+                This paper proposes an automated approach to derive design feature vectors from patent images using a convolutional neural network that captures visual characteristics and technology-related information. By embedding visual design stimuli into a vector space, the method supports near-field and far-field design-by-analogy retrieval and is validated through classification accuracy and a case study.
             </p>
         </div>
 
-        <div class="section-header" id="projects" style="margin-top: 60px;">
+        <div class="section-header collapsible-trigger" id="patents-trigger" style="margin-top: 60px;">
             <div class="section-title">
-                Selected Patents
+                Selected Patents <span id="patents-status"></span>
+            </div>
+        </div>
+
+        <div id="patents-content" class="collapsible-content">
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">DNA Data Storage Method, Reading Method, and Terminal Based on Encoding Optimization</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage, Data Encoding</span>
+                | <a href="https://patents.google.com/patent/CN119580800B/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                <strong><u>S. Jiang</u></strong>, L. Zhang.
+                CN Patent, CN119580800B, 2025-05-02.
             </div>
         </div>
 
         <div class="research-item">
-            <a href="#" class="paper-title">AutoTRIZ: AI-Driven Design Tool</a>
-
-            <div class="paper-links">
-                <span style="color: #666;">TypeScript, Next.js, OpenAI API</span>
-                | <a href="#" target="_blank">Live Demo</a>
+            <div class="paper-header">
+                <a class="paper-title">DNA Encoding Method Meeting Biological Constraints, Terminal Device, and Storage Medium</a>
             </div>
-
-            <p class="paper-summary">
-                <span class="summary-label">Summary:</span>
-                Developed a generative AI tool that helps engineers solve contradictions in design using TRIZ principles.
-            </p>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage, Finite Field</span>
+                | <a href="https://patents.google.com/patent/CN119068992B/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                <strong><u>S. Jiang</u></strong>, L. Zhang.
+                CN Patent, CN119068992B, 2025-03-25.
+            </div>
         </div>
 
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Method and Apparatus for Storing Information in Molecule</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage</span>
+                | <a href="https://patents.google.com/patent/WO2023130562A1" target="_blank">PCT</a>
+                | <a href="https://patents.google.com/patent/CN116451780B/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                L. Zhang, <strong><u>S. Jiang</u></strong>.
+                PCT Patent, WO2023/130562, 2022-03-08. (CN116451780B, 2024-07-05)
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Method, Device, and Medium for Generating Nucleic Acid Molecular Address Sequence</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage</span>
+                | <a href="https://patents.google.com/patent/CN117059177A/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                <strong><u>S. Jiang</u></strong>, L. Zhang.
+                CN Patent, CN117059177A, 2023-08-29.
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Data Storage and Retrieval Method, Device, and Medium Using Nucleic Acid Molecules</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage</span>
+                | <a href="https://patents.google.com/patent/CN117059178A/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                <strong><u>S. Jiang</u></strong>, L. Zhang.
+                CN Patent, CN117059178A, 2023-08-29.
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Molecular Module Assembly Device and Molecular Module Assembly Method</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage</span>
+                | <a href="https://patents.google.com/patent/WO2023216692A1" target="_blank">PCT</a>
+                | <a href="https://patents.google.com/patent/CN118447966A/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                L. Zhang, <strong><u>S. Jiang</u></strong>.
+                PCT Patent, WO2023/216692, 2023-03-06. (CN118447966A, 2023-02-03)
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Writing System and Writing Method for Molecular Data Storage, and Writing Control Device</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage</span>
+                | <a href="https://patents.google.com/patent/WO2024021164A1" target="_blank">PCT</a>
+                | <a href="https://patents.google.com/patent/CN117521787A/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                L. Zhang, <strong><u>S. Jiang</u></strong>.
+                PCT Patent, WO2024/021164, 2022-08-10. (CN117521787A, 2022-07-29)
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Molecular Module Assembly Device and Molecular Module Assembly Method</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage</span>
+                | <a href="https://patents.google.com/patent/CN117079689A/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                L. Zhang, <strong><u>S. Jiang</u></strong>.
+                CN Patent, CN117079689A, 2022-05-10.
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">DNA Data Storage Method, Device, and Terminal Equipment Based on Assembly Optimization</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage</span>
+                | <a href="https://patents.google.com/patent/CN117059176A/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                <strong><u>S. Jiang</u></strong>, L. Zhang.
+                CN Patent, CN117059176A, 2022-05-07.
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">DNA Data Storage and Reading Method Based on Erasure Coding and Molecular Assembly</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">BT-IT Systems, DNA Data Storage</span>
+                | <a href="https://patents.google.com/patent/CN116564424A/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                <strong><u>S. Jiang</u></strong>, L. Zhang.
+                CN Patent, CN116564424A, 2022-01-30.
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Robot Manipulator</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">Mechanical Systems</span>
+                | <a href="https://patents.google.com/patent/CN108888922B/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                J. Ma, <strong><u>S. Jiang</u></strong>, J. Hu, W. Wang, J. Qi.
+                CN Patent, CN108888922B, 2020-11-24.
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Swing Check Valve</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">Mechanical Systems</span>
+                | <a href="https://patents.google.com/patent/CN106949266B/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                <strong><u>S. Jiang</u></strong>, J. Hu, J. Qi, J. Ma, H. Huang, Y. Peng.
+                CN Patent, CN106949266B, 2019-01-25.
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="paper-header">
+                <a class="paper-title">Charpy Impact Specimen Reconstruction Based on Remote-Controlled Clamping and Stud Welding</a>
+            </div>
+            <div class="paper-links">
+                <span style="color: #666;">Mechatronics Systems</span>
+                | <a href="https://patents.google.com/patent/CN105817897B/zh" target="_blank">CN Patent</a>
+            </div>
+            <div class="paper-authors">
+                H. Hu, X. Fan, <strong><u>S. Jiang</u></strong>, Q. Zhang, Q. Wang.
+                CN Patent, CN105817897B, 2018-02-27.
+            </div>
+        </div>
+
+        </div>
     </div>
 
 </body>
