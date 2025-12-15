@@ -103,10 +103,26 @@
         .profile-img {
             width: 170px;
             height: 220px;
-            object-fit: cover;
+            /* 关键修改 1: 移除 object-fit，使用背景图 */
             border-radius: 4px;
             flex-shrink: 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer; /* 提示用户可以交互 */
+
+            /* 关键修改 2: 设置默认图片为背景图 */
+            background-image: url('assets/profile.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            /* (可选) 增加过渡效果，让切换更平滑 */
+            transition: background-image 0.4s ease-in-out;
+        }
+
+        /* 鼠标悬停时更换图片 */
+        .profile-img:hover {
+            /* 关键修改 3: 设置悬停时的图片 */
+            background-image: url('assets/profile-hover.jpg');
         }
 
         .profile-content h1 {
@@ -387,8 +403,7 @@
     </div>
 
     <script src="https://strava-embeds.com/embed.js"></script>
-
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <!-- <link rel="icon" type="image/x-icon" href="/assets/favicon.ico"> -->
 </head>
 <body>
 
@@ -407,7 +422,7 @@
         </nav>
 
         <div class="profile-section">
-            <img src="assets/profile.jpg" alt="Shuo Jiang" class="profile-img">
+            <div class="profile-img" alt="Shuo Jiang"></div>
 
             <div class="profile-content">
                 <h1>Shuo Jiang (姜朔)</h1>
