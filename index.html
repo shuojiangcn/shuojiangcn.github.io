@@ -98,6 +98,7 @@
             max-width: 860px;
             margin-left: auto;
             margin-right: auto;
+            text-align: left; /* 使文本左对齐 */
         }
 
         .profile-img {
@@ -130,11 +131,13 @@
             margin: 0 0 10px 0;
             font-weight: bold;
             color: #000;
+            text-align: left; /* 使文本左对齐 */
         }
 
         .interest-row {
             margin-bottom: 8px;
             line-height: 1.5;
+            text-align: left; /* 使文本左对齐 */
         }
         .interest-label {
             font-weight: bold;
@@ -266,6 +269,48 @@
             cursor: pointer;
         }
 
+        /* 为 "Selected Patents (Click to Expand)" 添加椭圆边框 */
+        #patents-trigger {
+            border: 1px solid #000000; /* 设置边框颜色 */
+            padding: 4px 10px; /* 设置内边距，使文本不至于紧贴边框 */
+            border-radius: 10px; /* 设置边框圆角，形成椭圆形 */
+            display: inline-block; /* 确保它不是占满整个行 */
+            font-weight: bold; /* 设置字体加粗 */
+            color: #207ab7; /* 设置文字颜色 */
+            cursor: pointer; /* 设置为可点击 */
+            transition: background-color 0.3s ease; /* 添加过渡效果 */
+        }
+
+        #patents-trigger:hover {
+            background-color: #f0f0f0; /* 设置鼠标悬停时背景色变化 */
+        }
+
+        #awards-trigger {
+            border: 1px solid #000000; /* 设置边框颜色 */
+            padding: 4px 10px; /* 设置内边距，使文本不至于紧贴边框 */
+            border-radius: 10px; /* 设置边框圆角，形成椭圆形 */
+            display: inline-block; /* 确保它不是占满整个行 */
+            font-weight: bold; /* 设置字体加粗 */
+            color: #207ab7; /* 设置文字颜色 */
+            cursor: pointer; /* 设置为可点击 */
+            transition: background-color 0.3s ease; /* 添加过渡效果 */
+            text-align: left; /* 确保文本左对齐 */
+        }
+
+        #awards-trigger:hover {
+            background-color: #f0f0f0; /* 设置鼠标悬停时背景色变化 */
+        }
+
+        /* 将父容器居中 */
+        .main-container {
+            text-align: center; /* 确保容器内的内容水平居中 */
+        }
+
+        #awards-content {
+            text-align: left; /* 确保列表内容不居中，保持左对齐 */
+            /*padding-left: 20px;  增加左侧内边距，稍微缩进 */
+        }
+
         /* --- 移动端适配 --- */
         @media (max-width: 600px) {
             .profile-section {
@@ -314,6 +359,28 @@
                     }
                 });
             }
+
+            // AWARD
+
+            var triggerAwards = document.getElementById("awards-trigger");
+                var contentAwards = document.getElementById("awards-content");
+                var statusElementAwards = document.getElementById("awards-status");
+
+                if (triggerAwards && contentAwards && statusElementAwards) {
+                    contentAwards.style.display = 'none';
+                    statusElementAwards.textContent = '(Click to Expand)';
+
+                    triggerAwards.addEventListener("click", function() {
+                        var isHidden = contentAwards.style.display === 'none';
+                        if (isHidden) {
+                            contentAwards.style.display = 'block';
+                            statusElementAwards.textContent = '';
+                        } else {
+                            contentAwards.style.display = 'none';
+                            statusElementAwards.textContent = '(Click to Expand)';
+                        }
+                    });
+                }
 
             // --- Strava 模态框功能 (激活通用逻辑) ---
             var modal = document.getElementById("stravaModal");
@@ -435,7 +502,7 @@
                 <p class="bio-text">
                     I hold a Ph.D. from SJTU (China) and have worked as a researcher at MIT (USA) and SUTD (Singapore).
                     I co-founded <a href="https://mp.weixin.qq.com/s/XCjYqdVrcQeejbNgmDs9wg" target="_blank">DigiCodon</a>,
-                    a <a href="https://www.miracleplus.com/" target="_blank">YC China-backed</a>,
+                    a YC China-backed,
                     <a href="https://pitchbook.com/profiles/company/490702-69" target="_blank">multiple VC-funded</a> startup, with an MIT alumni team in Hangzhou.
                 </p>
 
@@ -877,6 +944,25 @@
         </div>
 
         </div>
+
+        <div class="section-header collapsible-trigger" id="awards-trigger" style="margin-top: 60px;">
+            <div class="section-title">
+                Selected Awards <span id="awards-status"></span>
+            </div>
+        </div>
+
+        <div id="awards-content" class="collapsible-content">
+            <ul>
+                <li>2025 <a href="https://asmedigitalcollection.asme.org/computingengineering">JCISE</a> Reviewer of the Year (Best Reviewer)</li>
+                <li>2025 <a href="https://iced.designsociety.org/">ICED</a> Reviewer's Choice Paper Award (Best paper)</li>
+                <li>2021 <a href="https://www.miracleplus.com/en/">MiraclePlus (YC China)</a> S21 batch (Seed Fund)</li>
+                <li>2021 Kwang-Hua Scholarship</li>
+                <li>2019 CSC NCSUPP Scholarship (Host Institute: MIT)</li>
+                <li>2017 <a href="https://baike.baidu.com/item/%E5%9B%BD%E5%AE%B6%E5%A5%96%E5%AD%A6%E9%87%91/9693046">National Scholarship</a> for Graduates</li>
+                <li>2015 / 2014 / 2013 <a href="https://baike.baidu.com/item/%E5%9B%BD%E5%AE%B6%E5%A5%96%E5%AD%A6%E9%87%91/9693046">National Scholarship</a> for Undergraduates</li>
+            </ul>
+        </div>
+
     </div>
 
 </body>
